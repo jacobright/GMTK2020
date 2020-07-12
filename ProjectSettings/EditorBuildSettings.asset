@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TestMoving.unity
+    guid: 8e5832da1480c2842a598e5cfa9ba414
+  - enabled: 1
     path: Assets/Scenes/SmolGraphic.unity
     guid: defb94e3e81f89748a23a8f0084d0744
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: bff55a8a607128545b6db9ea007f644a
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: 1f35596346a45a74796f4db67216acd3
   m_configObjects: {}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAnger : MonoBehaviour
 {
     [Range(0,14)]
-    public static int rage = 0;
+    public int rage = 0;
 
     public GameObject meter;
 
@@ -15,14 +15,37 @@ public class PlayerAnger : MonoBehaviour
     void Start()
     {
         rage = 0;
+
+        PlayerFlags.angerLevel = 0;
+        PlayerFlags.canInteract = true;
+        PlayerFlags.gotLunch = false;
+        PlayerFlags.skippedLunch = false;
+        PlayerFlags.nevermindCounter = 0;
+        PlayerFlags.complimentCounter = 0;
+        PlayerFlags.workTimeEnd = 9;
     }
 
     void Update()
     {
-        meter.transform.localScale = new Vector3((rage/14.0f), meter.transform.localScale.y, meter.transform.localScale.z);
+        //set the anger level
+        rage = PlayerFlags.angerLevel;
 
+        // move bar
+        meter.transform.localScale = new Vector3((rage/14.0f), meter.transform.localScale.y, meter.transform.localScale.z);
+        
+        if (GameObject.FindGameObjectsWithTag("Phone").Length > 1 && HoverPlayer.GetRage() > 2) {
+            DialogueBox.SetDialogue(GlobalDialogues.initiation_desk_interact_phone[HoverPlayer.GetRage()], 2.0f);
+            Destroy(GameObject.FindGameObjectWithTag("Phone"));
+        }
+
+
+        ChangeEmotes();
+    }
+
+
+    void ChangeEmotes() {
         // CHANGE EMOTES
-        if (rage == 14) {
+        if (rage >= 14) {
             emoteObj.GetComponent<UnityEngine.UI.Image>().sprite = emotes[6];
         }
         else if (rage >= 12) {
@@ -43,16 +66,6 @@ public class PlayerAnger : MonoBehaviour
         else {
             emoteObj.GetComponent<UnityEngine.UI.Image>().sprite = emotes[0];
         }
-
-        // AngerClick();
     }
 
-    // void AngerClick() {
-
-    // }
-
-
-    // void OnMouseDown() {
-    //     if ()
-    // }
 }
