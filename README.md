@@ -1,4 +1,4 @@
-# GMTK2020
+# Anger Management
 My GMTK Game Jam 2020 project
 ----------------------------------------
 ---
